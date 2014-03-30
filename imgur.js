@@ -1,5 +1,4 @@
 var sendToImgur;
-var imgurtext = document.getElementById('imgurl');
 sendToImgur = function() {
   var authorization;
   authorization = "Client-ID " + '61569d8b93f7e2b';
@@ -18,8 +17,8 @@ sendToImgur = function() {
       var id;
       id = result.data.id;
       imgurtext.style.display = 'block';
-      imgurtext.href = "https://imgur.com/gallery/" + id;
-      imgurtext.innerHTML = "https://imgur.com/gallery/" + id;
+      imgurtext.href = "https://imgur.com/" + id;
+      imgurtext.innerHTML = "https://imgur.com/" + id;
     }
   });
 };
