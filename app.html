@@ -67,7 +67,11 @@
  
 
 <script>
+	var imgurtext = document.getElementById('imgurl');
+
 	var Restart = function(){
+		imgurtext.innerHTML = '';
+		imgurtext.href = '';
 		document.getElementById('app').style.display = 'none';
 		document.getElementById('uploaderContainer').style.display = 'block';
 		document.getElementsByClassName('menumagico')[0].style.display = 'none';
