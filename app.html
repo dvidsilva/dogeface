@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+
+    <link rel="stylesheet" type="text/css" href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' />
+    <link rel="stylesheet" type="text/css" href='./theme.css' />
+    <link rel="stylesheet" type="text/css" href='./css/style.css' />
+
+<script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
+<script src='https://code.jquery.com/jquery-2.1.0.min.js' type='text/javascript'></script>
+
+</head>
+<body>
+
+<!-- <div id="resize"></div> -->
+
+
+
+<div id='uploaderContainer'>
+
+	<article>
+	  <div id="holder">
+	  </div> 
+	  <p id="upload" class="hidden"></p>
+	  <p id="filereader">File API & FileReader API not supported</p>
+	  <p id="formdata">XHR2's FormData is not supported</p>
+	  <p id="progress">XHR2's upload progress isn't supported</p>
+	  <p>Upload progress: <progress id="uploadprogress" min="0" max="100" value="0">0</progress></p>
+	  <p>Drag an image from your desktop on to the drop zone above to see the browser both render the preview, but also upload automatically to this server.</p>
+	  <label>Upload an image:<br><input type="file" id='finput'></label>
+	</article>
+
+
+</div>
+
+<canvas id="app" style='display:none;'>Your browser doesn't support canvas</canvas>
+
+
+<div id="buttons">
+	<a id="save" href="#" download="doge.jpg">Download</a>
+	<a id="add-doge" href="#" onclick="addDoge()">Moar Doge</a>
+</div>
+<script>
+
+	var MOVING = 1;
+	var RESIZING = 2;
+
+	var app = document.getElementById('app');
+	var stage = new createjs.Stage('app');
+	var saveBtn = document.getElementById('save'); 
+	var resizes = [];
+	createjs.Touch.enable(stage);
+
+	var soStartMuchImage = function(img, h, w){
+		app.style.display = 'block';
+		app.width = h || window.innerWidth;
+		app.height = w || window.innerHeight;
+		//var shape = new createjs.Shape();
+		//shape.graphics.beginFill("#ffff00").drawRect(0, 0, app.width, app.height);
+		//stage.addChild(shape);
+
+		var bg = new createjs.Bitmap(img);
+		stage.addChild(bg);
+		addDoge();
+	}
+
+
+
+	saveBtn.onmouseover = saveBtn.ontouchstart = function(e) {
+		for (var i = 0; i < resizes.length; i++) {
+			resizes[i].visible = false;
+		};
+		saveBtn.href = app.toDataURL('image/jpeg');
+
+	}
+
+	app.onmouseover = app.ontouchstart = function(e) {
+		for (var i = 0; i < resizes.length; i++) {
+			resizes[i].visible = true;
+		};
+	}
+	
+	var addDoge = function() {
+		// body...
+	
+		var doge = new createjs.Bitmap('doge.png');
+		var resize = new createjs.Bitmap('resize.png');
+		resizes.push(resize);
+		stage.addChild(doge);
+		stage.addChild(resize);
+		
+		doge.scaleX = 0.5; 
+		doge.scaleY = 0.5;
+
+		resize.updatePosition = function(evt) {
+			resize.y = doge.y + doge.image.height * doge.scaleY - 50;
+			resize.x = doge.x + doge.image.width * doge.scaleX - 50;
+		}
+
+		doge.on("mousedown", function(evt) {
+			doge.off = {
+				x: evt.stageX - evt.target.x,
+				y: evt.stageY - evt.target.y
+			};
+		});
+
+		resize.on("mousedown", function(evt) {
+			resize.off = {
+				x: evt.stageX - evt.target.x,
+				y: evt.stageY - evt.target.y
+			};
+		});
+
+		doge.on("pressmove", function(evt) {
+		    evt.target.x = evt.stageX - doge.off.x;
+		    evt.target.y = evt.stageY - doge.off.y;
+		    resize.updatePosition(evt);
+		});
+
+		resize.on("pressmove", function(evt) {
+			var newY =  (evt.stageX - doge.x) / doge.image.height;
+			var newX =  (evt.stageY - doge.y) / doge.image.width;
+			var scaleX = Math.min(newX, newY);
+			if (scaleX < 0) {
+				scaleX *= -1;
+			}
+			var scaleY = Math.min(newX, newY);
+			doge.scaleY = scaleX;
+			doge.scaleX = scaleY;
+			resize.updatePosition(evt);
+		});
+
+	}
+
+	setInterval(function() {
+		stage.update();
+	});
+</script>
+
+
+
+
+<script src='./h5utils.js' type='text/javascript'></script>
+<script src='./upload.js' type='text/javascript'></script>
+<script src='./imgur.js' type='text/javascript'></script>
+<script src='./prettify.packed.js' type='text/javascript'></script>
+
+
+
+
+</body>
+</html>
+

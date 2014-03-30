@@ -39,14 +39,18 @@ filereader: document.getElementById('filereader'),
 				var image = new Image();
 				image.src = event.target.result;
 				localStorage.dataBase64 = event.target.result;
-				image.width = 250; // a fake resize
+				// image.width = 250; // a fake resize
+				image.id = 'soUploaded';
 				holder.innerHTML = ' ';
 				holder.appendChild(image);
+				soStartMuchImage(image, image.width, image.height );
+				document.getElementById('uploaderContainer').style.display = 'none';
 			};
 			reader.readAsDataURL(file);
 		}  else {
-			holder.innerHTML += '<p>Uploaded ' + file.name + ' ' + (file.size ? (file.size/1024|0) + 'K' : '');
-			console.log(file);
+			// holder.innerHTML += '<p>Uploaded ' + file.name + ' ' + (file.size ? (file.size/1024|0) + 'K' : '');
+			// console.log(file);
+			alert("Something is wrong! Calling the Internet police.");
 		}
 	}
 
