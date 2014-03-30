@@ -20,9 +20,11 @@ body {
 body {
 	line-height: 0;
 	font-size: 0;
-	overflow: hidden;
+	/* overflow: hidden; */
 	position: relative;
-	font-family: "Comic Sans MS", "Comic Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-family: "Comic Sans", "Comic Sans MS", cursive, sans-serif; 
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 #buttons {
 	position: absolute;
@@ -45,7 +47,10 @@ body {
 	text-decoration: none;
 }
 
-
+#imgurl {
+	font-size:14px;
+	line-height:16px;
+}
 
 
 /* upload things */

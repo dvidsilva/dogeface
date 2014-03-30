@@ -42,7 +42,7 @@ filereader: document.getElementById('filereader'),
 				// image.width = 250; // a fake resize
 				image.id = 'soUploaded';
 				holder.innerHTML = ' ';
-				holder.appendChild(image);
+				//holder.appendChild(image);
 				soStartMuchImage(image, image.width, image.height );
 				document.getElementById('uploaderContainer').style.display = 'none';
 			};

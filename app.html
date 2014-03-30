@@ -11,7 +11,7 @@
 
 <script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
 <script src='https://code.jquery.com/jquery-2.1.0.min.js' type='text/javascript'></script>
-
+<script src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js' type='text/javascript' ></script>
 </head>
 <body>
 
@@ -42,9 +42,27 @@
 <div id="buttons">
 	<a id="save" href="#" download="doge.jpg">Download</a>
 	<a id="add-doge" href="#" onclick="addDoge()">Moar Doge</a>
+	<a href="#" onclick="Restart()">Restart</a>
+	<a id="imgurthing" href="#" onclick="ImgurSend()">Send To Imgur</a>
+	<p id='imgurl' style='display:none;'></p>
 </div>
 <script>
+	var Restart = function(){
+		document.getElementById('app').style.display = 'none';
+		document.getElementById('uploaderContainer').style.display = 'block';
+	}
 
+	var ImgurSend = function(){
+		for (var i = 0; i < resizes.length; i++) {
+			resizes[i].visible = false;
+		};
+		stage.update();
+		localStorage.dataBase64 =  app.toDataURL('image/jpeg');
+		sendToImgur();
+		for (var i = 0; i < resizes.length; i++) {
+			resizes[i].visible = true;
+		};
+	}
 	var MOVING = 1;
 	var RESIZING = 2;
 
@@ -52,6 +70,8 @@
 	var stage = new createjs.Stage('app');
 	var saveBtn = document.getElementById('save'); 
 	var resizes = [];
+
+
 	createjs.Touch.enable(stage);
 
 	var soStartMuchImage = function(img, h, w){
