@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+
+
+<script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+}
+#app {
+	position: relative;
+}
+
+#resize {
+	position:absolute;top: 0;
+	left:0;
+	fill: #525151;
+	height: 50px;
+	width: 50px;
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+}
+
+body {
+	line-height: 0;
+	font-size: 0;
+	overflow: hidden;
+	position: relative;
+	font-family: "Comic Sans MS", "Comic Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#buttons {
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-align: right;
+}
+
+#buttons a {
+	height: 50px;
+	width: 200px;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	color: red;
+	font-weight: bold;
+	display: block;
+	font-size: 15px;
+	line-height: 50px;
+	background: white;
+	text-align: center;
+	text-decoration: none;
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- <div id="resize"></div> -->
+
+<canvas id="app">Your browser doesn't support canvas</canvas>
+<div id="buttons">
+	<a id="save" href="#" download="doge.jpg">Download</a>
+
+	<a id="add-doge" href="#" onclick="addDoge()">Moar Doge</a>
+</div>
+<script>
+
+	var MOVING = 1;
+	var RESIZING = 2;
+
+	var app = document.getElementById('app');
+	app.width = window.innerWidth;
+	app.height = window.innerHeight;
+	var stage = new createjs.Stage('app');
+	var shape = new createjs.Shape();
+	var saveBtn = document.getElementById('save'); 
+	shape.graphics.beginFill("#ffff00").drawRect(0, 0, app.width, app.height);
+	stage.addChild(shape);
+	createjs.Touch.enable(stage);
+	var resizes = [];
+
+	saveBtn.onmouseover = saveBtn.ontouchstart = function(e) {
+		for (var i = 0; i < resizes.length; i++) {
+			resizes[i].visible = false;
+		};
+		saveBtn.href = app.toDataURL('image/jpeg');
+
+	}
+
+	app.onmouseover = app.ontouchstart = function(e) {
+		for (var i = 0; i < resizes.length; i++) {
+			resizes[i].visible = true;
+		};
+	}
+	
+	var addDoge = function() {
+		// body...
+	
+		var doge = new createjs.Bitmap('doge.png');
+		var resize = new createjs.Bitmap('resize.png');
+		resizes.push(resize);
+		stage.addChild(doge);
+		stage.addChild(resize);
+		
+		doge.scaleX = 0.5; 
+		doge.scaleY = 0.5;
+
+		resize.updatePosition = function(evt) {
+			resize.y = doge.y + doge.image.height * doge.scaleY - 50;
+			resize.x = doge.x + doge.image.width * doge.scaleX - 50;
+		}
+
+		doge.on("mousedown", function(evt) {
+			doge.off = {
+				x: evt.stageX - evt.target.x,
+				y: evt.stageY - evt.target.y
+			};
+		});
+
+		resize.on("mousedown", function(evt) {
+			resize.off = {
+				x: evt.stageX - evt.target.x,
+				y: evt.stageY - evt.target.y
+			};
+		});
+
+		doge.on("pressmove", function(evt) {
+		    evt.target.x = evt.stageX - doge.off.x;
+		    evt.target.y = evt.stageY - doge.off.y;
+		    resize.updatePosition(evt);
+		});
+
+		resize.on("pressmove", function(evt) {
+			var newY =  (evt.stageX - doge.x) / doge.image.height;
+			var newX =  (evt.stageY - doge.y) / doge.image.width;
+			var scaleX = Math.min(newX, newY);
+			if (scaleX < 0) {
+				scaleX *= -1;
+			}
+			var scaleY = Math.min(newX, newY);
+			doge.scaleY = scaleX;
+			doge.scaleX = scaleY;
+			resize.updatePosition(evt);
+		});
+
+	}
+
+	addDoge();
+	setInterval(function() {
+		stage.update();
+	});
+</script>
+</body>
+</html>
