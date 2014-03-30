@@ -18,6 +18,7 @@ sendToImgur = function() {
       var id;
       id = result.data.id;
       imgurtext.style.display = 'block';
+      imgurtext.href = "https://imgur.com/gallery/" + id;
       imgurtext.innerHTML = "https://imgur.com/gallery/" + id;
     }
   });

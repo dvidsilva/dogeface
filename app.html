@@ -18,6 +18,31 @@
 <!-- <div id="resize"></div> -->
 
 
+<nav id="" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+		<div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">DogeFace</a>
+		</div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav menumagico">
+				<li><a id="add-doge" href="#" onclick="addDoge()">Moar Doge</a></li>
+				<li><a href="#" onclick="Restart()">Restart</a></li>
+				<li><a id="save" href="#" download="doge.jpg">Download</a></li>
+				<li><a id="imgurthing" href="#" onclick="ImgurSend()">Send To Imgur</a></li>
+				<li><a id='imgurl' style='display:none;' target='_blank'></a></li>
+      </ul>
+		</div>
+	</div>
+</nav>
+
+
+
 
 <div id='uploaderContainer'>
 
@@ -39,17 +64,13 @@
 <canvas id="app" style='display:none;'>Your browser doesn't support canvas</canvas>
 
 
-<div id="buttons">
-	<a id="save" href="#" download="doge.jpg">Download</a>
-	<a id="add-doge" href="#" onclick="addDoge()">Moar Doge</a>
-	<a href="#" onclick="Restart()">Restart</a>
-	<a id="imgurthing" href="#" onclick="ImgurSend()">Send To Imgur</a>
-	<p id='imgurl' style='display:none;'></p>
-</div>
+ 
+
 <script>
 	var Restart = function(){
 		document.getElementById('app').style.display = 'none';
 		document.getElementById('uploaderContainer').style.display = 'block';
+		document.getElementsByClassName('menumagico')[0].style.display = 'none';
 	}
 
 	var ImgurSend = function(){
@@ -75,6 +96,8 @@
 	createjs.Touch.enable(stage);
 
 	var soStartMuchImage = function(img, h, w){
+		document.getElementsByClassName('menumagico')[0].style.display = 'block';
+
 		app.style.display = 'block';
 		app.width = h || window.innerWidth;
 		app.height = w || window.innerHeight;
@@ -85,7 +108,7 @@
 		var bg = new createjs.Bitmap(img);
 		stage.addChild(bg);
 		addDoge();
-	}
+}
 
 
 
