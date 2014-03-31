@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
         <meta charset="UTF-8">
-        <title>Document</title>
+        <title>to the moon</title>
+        <meta name='description' content='such doge very pride so shibe'/>
         <meta name="viewport" content="width=device-width, user-scalable=no">
-
+        
 
 <script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
 <script src='https://code.jquery.com/jquery-2.1.0.min.js' type='text/javascript'></script>
@@ -60,6 +61,9 @@
 
 <div id="scroll-helper" class="navbar navbar-default navbar-fixed-bottom visible-md visible-sm visible-xs">
 <i class="glyphicon glyphicon-move"></i>
+<div class='btn btn-group sharing'>
+  <a target='_blank' href='#' class='fbshare'>FB</a>
+</div>
 </div>
 
 <script>
@@ -196,13 +200,13 @@
         /* dvid */
         var imgurtext = document.getElementById('imgurl');
         var Restart = function(){
+                $('.sharing').hide();
                 stage.clear();
                 imgurtext.innerHTML = '';
                 imgurtext.href = '';
                 document.getElementById('app').style.display = 'none';
                 document.getElementById('uploaderContainer').style.display = 'block';
                 document.querySelector('.menumagico').style.display = 'none';
-
         }
 
         var ImgurSend = function(){

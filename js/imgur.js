@@ -1,4 +1,4 @@
-var sendToImgur;
+var sendToImgur, imgurURL, fbShare;
 sendToImgur = function() {
   var authorization;
   authorization = "Client-ID " + '61569d8b93f7e2b';
@@ -17,8 +17,16 @@ sendToImgur = function() {
       var id;
       id = result.data.id;
       imgurtext.style.display = 'block';
-      imgurtext.href = "https://imgur.com/" + id;
-      imgurtext.innerHTML = "https://imgur.com/" + id;
+      imgurURL = "https://imgur.com/" + id;
+      imgurtext.href = imgurURL;
+      imgurtext.innerHTML = imgurURL;
+      $('.sharing').show();
+      fbShare = 'http://www.facebook.com/sharer.php?s=100&p[title]='+encodeURIComponent('DogeFace') +
+        '&p[summary]=' + encodeURIComponent('Such Shibe So Pride Very Doge') + '&p[url]=' +
+          encodeURIComponent('http://dvidsilva.github.io/dogeface/') + '&p[images][0]=' +
+        encodeURIComponent(imgurURL);
+        debugger;
+      $('.fbshare').attr('href', fbShare);
     }
   });
 };
