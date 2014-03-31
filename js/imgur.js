@@ -1,5 +1,6 @@
 var sendToImgur, imgurURL, fbShare, twShare;
 sendToImgur = function() {
+  $('#imgurthing').hide();
   var authorization;
   authorization = "Client-ID " + '61569d8b93f7e2b';
   $.ajax({
@@ -15,6 +16,7 @@ sendToImgur = function() {
     },
     success: function(result) {
       var id;
+      $('#imgurthing').show();
       id = result.data.id;
       imgurtext.style.display = 'block';
       imgurURL = "https://imgur.com/" + id + '.jpg';
