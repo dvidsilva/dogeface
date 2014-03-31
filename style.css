@@ -1,0 +1,124 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+#app {
+	position: relative;
+}
+
+.resize {
+	position:absolute;top: 0;
+	left:0;
+	fill: #525151;
+	height: 50px;
+	width: 50px;
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	opacity: 0.5;
+}
+
+body {
+	line-height: 0;
+	font-size: 0;
+	position: relative;
+	font-family: "Comic Sans MS", "Comic Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#buttons {
+	margin-top: 0;
+}
+
+#buttons > a {
+	height: 50px;
+	width: 200px;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	color: red;
+	font-weight: bold;
+	display: block;
+	font-size: 15px;
+	line-height: 50px;
+	background: white;
+	text-align: center;
+	text-decoration: none;
+}
+
+#logo {
+color: rgb(20, 197, 231);
+}
+
+#holder::after {
+content: '{ DRAG IMAGE HERE }';
+display: block;
+font-size: 32px;
+margin-top: 21%;
+color: rgb(156, 156, 156);
+}
+
+label {
+	display: inline-block;
+	margin-bottom: 5px;
+	font-weight: 700;
+	margin-top: 70px;
+}
+
+#scroll-helper {
+	background: #666;
+	font-size: 30px;
+	text-align: center;
+	line-height: 60px;
+	height: 60px;
+}
+
+/* dvid things  */
+
+#imgurl {
+font-size: 14px;
+line-height: 16px;
+color: rgb(255, 255, 255);
+background: rgb(93, 190, 4);
+margin-top: 2px;
+border-radius: 8px;
+}
+
+nav {
+	color: red;
+	font-weight: bold;
+	font-family: "Comic Sans", "Comic Sans MS", cursive, sans-serif; 
+	font-size: 15px;
+}
+nav .menumagico {
+	display:none;
+}
+.navbar-default .navbar-nav>li>a , .navbar-default .navbar-brand {
+	color:red;
+}
+.navbar-fixed-top {
+	margin-top:0;
+}
+/* upload things */
+#uploaderContainer {
+	text-align: center;
+}
+#holder {border: 10px dashed #ccc;
+width: 90%;
+min-height: 500px;
+margin: 80px auto;
+}
+#holder.hover { border: 10px dashed #0c0; }
+#holder img { display: block; margin: 10px auto; }
+#holder p { margin: 10px; font-size: 14px; }
+progress { width: 100%; }
+progress:after { content: '%'; }
+.fail { background: #c00; padding: 2px; color: #fff; }
+.hidden { display: none !important;}
+
+input[type=file] {
+display: block;
+font-size: 21px;
+margin: 0 auto;
+width: 300px;
+}
+
