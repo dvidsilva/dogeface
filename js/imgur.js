@@ -25,8 +25,10 @@ sendToImgur = function() {
         '&p[summary]=' + encodeURIComponent('Such Shibe So Pride Very Doge') + '&p[url]=' +
           encodeURIComponent('http://dvidsilva.github.io/dogeface/') + '&p[images][0]=' +
         encodeURIComponent(imgurURL);
-        debugger;
+      twShare = 'http://twitter.com/share?text=My face with doge, '+imgurURL +' get yours!'
+      +'&url=http://dvidsilva.github.io/dogeface&hashtags=dogeface';
       $('.fbshare').attr('href', fbShare);
+      $('.twshare').attr('href', twShare);
     }
   });
 };
