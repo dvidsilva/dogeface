@@ -23,10 +23,10 @@ sendToImgur = function() {
       $('.sharing').show();
       fbShare = 'http://www.facebook.com/sharer.php?s=100&p[title]='+encodeURIComponent('DogeFace') +
         '&p[summary]=' + encodeURIComponent('Such Shibe So Pride Very Doge') + '&p[url]=' +
-          encodeURIComponent('http://dvidsilva.github.io/dogeface/') + '&p[images][0]=' +
+          encodeURIComponent('http://dvidsilva.github.io/dogeface/launcher.html') + '&p[images][0]=' +
         encodeURIComponent(imgurURL);
       twShare = 'http://twitter.com/share?text=My face with doge, '+imgurURL +' get yours!'
-      +'&url=http://dvidsilva.github.io/dogeface&hashtags=dogeface';
+      +'&url=http://dvidsilva.github.io/dogeface/launcher.html&hashtags=dogeface';
       $('.fbshare').attr('href', fbShare);
       $('.twshare').attr('href', twShare);
     }
