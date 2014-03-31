@@ -1,4 +1,4 @@
-var sendToImgur, imgurURL, fbShare;
+var sendToImgur, imgurURL, fbShare, twShare;
 sendToImgur = function() {
   var authorization;
   authorization = "Client-ID " + '61569d8b93f7e2b';
@@ -17,7 +17,7 @@ sendToImgur = function() {
       var id;
       id = result.data.id;
       imgurtext.style.display = 'block';
-      imgurURL = "https://imgur.com/" + id;
+      imgurURL = "https://imgur.com/" + id + '.jpg';
       imgurtext.href = imgurURL;
       imgurtext.innerHTML = imgurURL;
       $('.sharing').show();

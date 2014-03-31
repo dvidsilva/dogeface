@@ -13,6 +13,17 @@
 <link rel="stylesheet" type="text/css" href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' />
 <link rel="stylesheet" type="text/css" href='./theme.css' />
 <link rel="stylesheet" type="text/css" href="style.css">
+
+
+<meta property="og:title" content="DogeFace"/>
+<meta property="og:type" content="app"/>
+<meta property="og:url" content="http://dvidsilva.github.io/dogeface/"/>
+<meta property="og:image" content="https://dvidsilva.github.io/dogeface/doge.png"/>
+<meta property="og:site_name" content="DogeFace"/>
+<meta property="fb:admins" content="dvidsilva"/>
+<meta property="og:description" content="such doge very pride so shibe"/>
+
+
 </head>
 <body>
 <nav id="buttons" class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -31,7 +42,8 @@
                                 <li><a id="add-doge" href="#" onclick="addDoge()">Moar Doge</a></li>
                                 <li><a id="add-text" href="#" onclick="addText()">Text</a></li>
                                 <li><a href="#" onclick="Restart()">Restart</a></li>
-                                <li><a id="save" href="#" download="doge.jpg">Download</a></li>
+
+                                <li><a id="save" href="#" download="doge.jpg"><i class='glyphicon glyphicon-floppy-disk'></i> Download</a></li>
                                 <li><a id="imgurthing" href="#" onclick="ImgurSend()">Send To Imgur</a></li>
                                 <li><a id='imgurl' style='display:none;' target='_blank'></a></li>
         </ul>
@@ -62,7 +74,8 @@
 <div id="scroll-helper" class="navbar navbar-default navbar-fixed-bottom visible-md visible-sm visible-xs">
 <i class="glyphicon glyphicon-move"></i>
 <div class='btn btn-group sharing'>
-  <a target='_blank' href='#' class='fbshare'>FB</a>
+  <a target='_blank' href='#' class='fbshare' title='Share on Facebook'><i class='glyphicon glyphicon-thumbs-up' ></i></a>
+  <a target='_blank' href='#' class='twshare' title='Tweet this'><i class='glyphicon glyphicon-retweet' ></i></a>
 </div>
 </div>
 
